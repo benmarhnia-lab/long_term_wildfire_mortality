@@ -8,7 +8,7 @@ co-authored by Lara Schwarz, Timothy B. Frankland, Sara Y. Tartof, Gina S. Lee, 
 
 ## Data access
 
-Original, diagnosis-level data tied to individuals, locations, and time are considered personally identifiable health information. These data cannot be shared owing to risks of breaching patient confidentiality. Anonymized data that support the findings of this study may be made available from the investigative team in the following conditions: (1) agreement to collaborate with the study team on all publications, (2) provision of external funding for administrative and investigator time necessary for this collaboration, (3) demonstration that the external investigative team is qualified and has documented evidence of training for human subjects protections, and (4) agreement to abide by the terms outlined in data use agreements between institutions.
+These data are personally identifiable health information and cannot be shared owing to risks of breaching patient confidentiality. Anonymized data that support the findings of this study may be made available from the investigative team in the following conditions: (1) agreement to collaborate with the study team on all publications, (2) provision of external funding for administrative and investigator time necessary for this collaboration, (3) demonstration that the external investigative team is qualified and has documented evidence of training for human subjects protections, and (4) agreement to abide by the terms outlined in data use agreements between institutions.
 
 ## Codes available in this repository
 
