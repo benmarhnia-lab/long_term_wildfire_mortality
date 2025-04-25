@@ -25,6 +25,10 @@ library(dlnm)
 
 indir1 <- "" ## work directory
 
+# Data used in this code:
+# dth_dt_cln.rds includes all health and exposure data, with one record for each quarter-person.
+# dth_wf_exp.csv includes birthday of each individual 
+
 ####################
 ## Main analysis
 ####################

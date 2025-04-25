@@ -12,6 +12,10 @@ library(RColorBrewer)
 
 indir1 <- "" ## work directory
 
+# Data used in this code:
+# r_kpsc_wfpm_average_rolling_seasonal_8724.RData includes quarterly updated 3-year rolling averages or sums of wildfire 
+#exposure metrics for census tracts within Kaiser Permanente Southern California’s catchment area
+
 ## set the stage and read in data for figure 2, 4, S3, and S4
 #######
 metrics <- c("Mean daily wildfire PM2.5",
