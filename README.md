@@ -12,6 +12,8 @@ These data are personally identifiable health information and cannot be shared o
 
 ## Codes available in this repository
 
+These codes were written by Tim B. Frankland, Lara Schwarz, and Chen Chen.
+
 1_descriptive.R
 
 2_analysis.R
@@ -21,9 +23,10 @@ These data are personally identifiable health information and cannot be shared o
 4_figures.R
 
 ## Datasets used in the codes
+
 _dth_dt_cln.rds_ includes all health and exposure data, with one record for each quarter-person.
 
-_dth_wf_exp.csv_ includes birthday of each individual 
+_dth_wf_exp.csv_ includes birthday of each individual.
 
 _r_kpsc_wfpm_average_rolling_seasonal_8724.RData_ includes quarterly updated 3-year rolling averages or sums of wildfire exposure metrics for census tracts within Kaiser Permanente Southern California’s catchment area
 
