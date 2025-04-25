@@ -22,7 +22,9 @@ Original, diagnosis-level data tied to individuals, locations, and time are cons
 
 ## Datasets used in the codes
 _dth_dt_cln.rds_ includes all health and exposure data, with one record for each quarter-person.
+
 _dth_wf_exp.csv_ includes birthday of each individual 
+
 _r_kpsc_wfpm_average_rolling_seasonal_8724.RData_ includes quarterly updated 3-year rolling averages or sums of wildfire exposure metrics for census tracts within Kaiser Permanente Southern California’s catchment area
 
 ## Contact 
