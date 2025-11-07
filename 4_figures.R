@@ -257,9 +257,37 @@ ggplot(foo,
         axis.text.x = element_text(angle = 45, hjust = 1)
   )
 dev.off()
+
 #######
 
 ## Figure S7
+#######
+foo <- rbind(out[out$type %in% c("main + GEE" , "main"), ])
+foo <- foo[foo$exposure != metrics[6], ]
+foo$type <- factor(foo$type, levels = c("main", "main + GEE"), labels = c("Main", "GEE"))
+png(file.path(indir1, "figures", "publication", "FigureS8.png"),
+    width=9,height=6,units="in", res = 600, bg="white",
+    family="sans")
+ggplot(foo, 
+       aes(y=or90, x=exposure, ymax=or90_ul, ymin=or90_ll, col=type)) + 
+  geom_hline(yintercept = 1, col="darkgrey", linewidth=1.2) +
+  geom_point(position=dodge, size=2) + geom_errorbar(position=dodge, width=0.2, linewidth=1.2) + 
+  scale_color_manual(values = colrs) +
+  scale_y_continuous(trans = "log") +
+  labs(title="", x="Exposure metrics", 
+       y = expression(atop("Odds ratio per 5th to 95th percentile", 
+                           "increase in average wildfire PM"[2.5])), 
+       col = "")+ 
+  theme_bw()+
+  theme(text = element_text(size=12), plot.title = element_text(hjust = 0.5),
+        legend.position = "bottom", 
+        axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+dev.off()
+
+#######
+
+## Figure S8
 #######
 foo.unknown <- out[out$type %in% c("all", "race"), ]
 foo.unknown$subgroup <- factor(foo.unknown$subgroup, 
@@ -305,36 +333,11 @@ p.lab <- plot_grid(ylab_or90, p, nrow=1, rel_widths = c(0.05,1))
 plot_grid(p.lab, xlab, ncol=1, rel_heights = c(1, 0.03))
 dev.off()
 
-#######
-
-## Figure S8
-#######
-foo <- rbind(out[out$type %in% c("main + GEE" , "main"), ])
-foo <- foo[foo$exposure != metrics[6], ]
-foo$type <- factor(foo$type, levels = c("main", "main + GEE"), labels = c("Main", "GEE"))
-png(file.path(indir1, "figures", "publication", "FigureS8.png"),
-    width=9,height=6,units="in", res = 600, bg="white",
-    family="sans")
-ggplot(foo, 
-       aes(y=or90, x=exposure, ymax=or90_ul, ymin=or90_ll, col=type)) + 
-  geom_hline(yintercept = 1, col="darkgrey", linewidth=1.2) +
-  geom_point(position=dodge, size=2) + geom_errorbar(position=dodge, width=0.2, linewidth=1.2) + 
-  scale_color_manual(values = colrs) +
-  scale_y_continuous(trans = "log") +
-  labs(title="", x="Exposure metrics", 
-       y = expression(atop("Odds ratio per 5th to 95th percentile", 
-                           "increase in average wildfire PM"[2.5])), 
-       col = "")+ 
-  theme_bw()+
-  theme(text = element_text(size=12), plot.title = element_text(hjust = 0.5),
-        legend.position = "bottom", 
-        axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-dev.off()
-#######
 
 #######
 ## figures below require reading in of other sets of data
+#######
+
 #######
 
 ## Figure 1
