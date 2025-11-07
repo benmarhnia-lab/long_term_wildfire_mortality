@@ -1,7 +1,6 @@
 ####################
 # Title: 4_figures.R
 # Date Created: 4/17/2025
-# Updated: 9/4/2025
 # Author: Chen Chen, Lara Schwarz and Tim B. Frankland
 # Purpose: Plot figures for the long-term wildfire smoke on mortality KPSC project
 ####################
@@ -10,10 +9,6 @@ library(data.table)
 library(ggplot2)
 library(cowplot)
 library(RColorBrewer)
-library(tigris)
-library(patchwork)
-library(corrplot)
-library(sf)
 
 indir1 <- "" ## work directory
 
@@ -312,6 +307,32 @@ dev.off()
 
 #######
 
+## Figure S8
+#######
+foo <- rbind(out[out$type %in% c("main + GEE" , "main"), ])
+foo <- foo[foo$exposure != metrics[6], ]
+foo$type <- factor(foo$type, levels = c("main", "main + GEE"), labels = c("Main", "GEE"))
+png(file.path(indir1, "figures", "publication", "FigureS8.png"),
+    width=9,height=6,units="in", res = 600, bg="white",
+    family="sans")
+ggplot(foo, 
+       aes(y=or90, x=exposure, ymax=or90_ul, ymin=or90_ll, col=type)) + 
+  geom_hline(yintercept = 1, col="darkgrey", linewidth=1.2) +
+  geom_point(position=dodge, size=2) + geom_errorbar(position=dodge, width=0.2, linewidth=1.2) + 
+  scale_color_manual(values = colrs) +
+  scale_y_continuous(trans = "log") +
+  labs(title="", x="Exposure metrics", 
+       y = expression(atop("Odds ratio per 5th to 95th percentile", 
+                           "increase in average wildfire PM"[2.5])), 
+       col = "")+ 
+  theme_bw()+
+  theme(text = element_text(size=12), plot.title = element_text(hjust = 0.5),
+        legend.position = "bottom", 
+        axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+dev.off()
+#######
+
 #######
 ## figures below require reading in of other sets of data
 #######
@@ -393,7 +414,7 @@ combined_maps <- wrap_plots(maps, ncol = 2, nrow = 3)
 KPSC_corr_data <- wf_data_avg %>%
   select(all_of(map_vars))
 
-corr_matrix <- cor(KPSC_corr_data, use = "complete.obs", method = "spearman")
+corr_matrix <- cor(KPSC_corr_data, use = "complete.obs")
 rownames(corr_matrix) <- legend_titles
 colnames(corr_matrix) <- legend_titles
 
@@ -540,8 +561,7 @@ dev.off()
 ## single figure for non-wildfire pm
 non_wf_pm_pred <- readRDS(file.path(indir1, "results", "non_wf_pm_pred_mort_dlmn.rds"))
 spline_plot<-non_wf_pm_pred %>%                                                                                                                                      
-  ggplot(aes(x=mean_non_wf_pm,y=rr)) +                                                                                                                              
-  geom_ribbon(aes(ymin=ll,ymax=ul),fill="grey90") +  
+  ggplot(aes(x=mean_non_wf_pm,y=rr)) +                                                                                                                              geom_ribbon(aes(ymin=ll,ymax=ul),fill="grey90") +  
   geom_line() + 
   theme_minimal(base_size=14) +
   theme(axis.line = element_line(colour = "black"), panel.grid.major = element_blank(),
